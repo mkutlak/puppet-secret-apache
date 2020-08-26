@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Private Content"
+AuthBasicProvider file
+AuthUserFile "/etc/httpd/.htpasswd"
+Require valid-user
