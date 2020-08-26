@@ -62,8 +62,6 @@ class gd_web (
     enable    => true,
     subscribe => [
       File["${apache_conf_dir}/conf.d/gd.conf"],
-      File["${gd_doc_root}/index.html"],
-      File["${gd_doc_root}/.htaccess"]
     ]
   }
 
