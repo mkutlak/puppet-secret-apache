@@ -28,11 +28,11 @@ class gd_web (
 
   # create directory for web
   file { $gd_doc_root:
-    ensure => 'directory',
-    source => 'puppet:///modules/gd_web/gd',
+    ensure  => 'directory',
+    source  => 'puppet:///modules/gd_web/gd',
     recurse => 'remote',
-    owner  => 'root',
-    group  => 'root'
+    owner   => 'root',
+    group   => 'root'
   }
 
   # copy-in httpd config gd.conf
