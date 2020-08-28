@@ -24,12 +24,13 @@ class gd_web (
     command => "/usr/bin/htpasswd -c -b ${apache_conf_dir}/.htpasswd ${user_name} ${user_password}",
     creates => "${apache_conf_dir}/.htpasswd",
     user    => 'root',
-    require => Package[$apache_package_name]
   }
 
   # create directory for web
   file { $gd_doc_root:
     ensure => 'directory',
+    source => 'puppet:///modules/gd_web/gd',
+    recurse => 'remote',
     owner  => 'root',
     group  => 'root'
   }
@@ -41,20 +42,6 @@ class gd_web (
     owner   => 'root',
     group   => 'root',
     mode    => '0644'
-  }
-
-  # copy-in index.html
-  file { "${gd_doc_root}/index.html":
-    source => 'puppet:///modules/gd_web/gd/index.html',
-    owner  => 'root',
-    group  => 'root'
-  }
-
-  # copy-in .htaccess
-  file { "${gd_doc_root}/.htaccess":
-    source => 'puppet:///modules/gd_web/gd/.htaccess',
-    owner  => 'root',
-    group  => 'root'
   }
 
   # enable and start httpd
