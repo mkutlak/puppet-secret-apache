@@ -14,7 +14,8 @@ class gd_web (
     ensure => $apache_package_version,
     before => [
       File[$gd_doc_root],
-      File["${apache_conf_dir}/conf.d/gd.conf"]
+      File["${apache_conf_dir}/conf.d/gd.conf"],
+      Exec['generate htpasswd']
     ]
   }
 
